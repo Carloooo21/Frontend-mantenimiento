@@ -214,7 +214,7 @@ export default function RegisterForm() {
                     <button
                         className="
                             w-full
-                            max-w-[10'0px]
+                            max-w-[100px]
                             md:w-[1000px]
                             mt-[3vh]
                             p-[15px]

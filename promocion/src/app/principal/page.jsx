@@ -57,7 +57,7 @@ export default function Home() {
                         xl:justify-self-end /*  Alinea horizontalmente a la derecha */
                         xl:items-start /* Alinea verticalmente arriba */
                         xl:ml-[25vh]
-                        xl:w-110
+                        xl:w-95
             
           `}
                 >
@@ -79,7 +79,7 @@ export default function Home() {
                 text-black
                 row-start-2 col-span-full
                 md:col-start-1 md:row-start-2
-                text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl
+                text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-3xl
                 font-bold
                 text-center md:text-left
                 mb-6 sm:mb-8 md:mb-0
@@ -97,7 +97,7 @@ export default function Home() {
                 xl:row-start-1
                 xl:col-start-1
                 xl:self-center
-                xl:ml-[20vh]
+                xl:ml-[1vh]
         ">
                 ¡Reclama aquí tu beneficio exclusivo!
             </h1>
@@ -140,7 +140,7 @@ export default function Home() {
                 <div className="
                         w-2/3 sm:w-1/2 md:w-1/2 
                         /* Tamaños ajustados para LG y XL */
-                        lg:w-[300px] 
+                        lg:w-[700px] 
                         xl:w-[750px]
                         /* Mantenemos la relación de aspecto */
                         aspect-[3/4]
