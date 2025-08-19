@@ -1,5 +1,5 @@
 "use client";
-import useRegister from "../lib/useRegister";
+import useRegister from "@/app/lib/useRegister";
 import React, { useMemo, useState } from "react";
 
 
