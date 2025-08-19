@@ -1,5 +1,5 @@
 'use client'
-import RegisterForm from "../component/page";
+import RegisterForm from "../components/registro/registro";
 import Image from "next/image";
 import React from "react";
 
