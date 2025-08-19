@@ -1,104 +1,139 @@
-import { useState } from "react";
+import { use, useCallback, useState } from 'react'
+
 
 export default function useRegister() {
-    const [nombreUsuario, setNombreUsuario] = useState("");
-    const [numeroTelefono, setNumeroTelefono] = useState("");
-    const [sectorIndustrial, setSectorIndustrial] = useState("");
-    const [cargoUsuario, setCargoUsuario] = useState("");
-    const [correoUsuario, setCorreoUsuario] = useState("");
-    const [lugarUsuario, setLugarUsuario] = useState("");
-    const [nombreEmpresa, setNombreEmpresa] = useState("")
-    const [codigoDescuento, setCodigoDescuento] = useState("");
-    const [expiracionCodigo, setExpiracionCodigo] = useState("")
-    const [mensaje, setMensaje] = useState("");
-    const [mostrarCard, setMostrarCard] = useState(false)
+  //  Cada campo de la entidad Spring necesita su propio estado:
+  // Gestión centralizada del estado del formulario
+  const [formData, setFormData] = useState({
+    nombreUsuario: "",
+    numeroTelefono: "",
+    sectorIndustrial: "",
+    cargoUsuario: "",
+    correoUsuario: "",
+    lugarUsuario: "",
+    nombreEmpresa: "",
+    codigoDescuento: "",
+    expiracionDescuento: ""
+  })
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const [mensaje, setMensaje] = useState("");
+  const [mostrarCard, setMostrarCard] = useState("")
+  const [loading, setLoading] = useState("")
+  // Estados para la respuesta del servidor
+  const [codigoDescuento, setCodigoDescuento] = useState("");
+  const [expiracionCodigo, setExpiracionCodigo] = useState("")
 
-        const payload = {
-            nombreUsuario,
-            numeroTelefono,
-            sectorIndustrial,
-            cargoUsuario,
-            correoUsuario,
-            lugarUsuario,
-            nombreEmpresa
-        }
-        try {
-            const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-            //Peticion API interna
-            const res = await fetch(`${baseUrl}/api/usuario/public/registro`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
+  // Handler optimizado con useCallback
+  //Memoiza funciones para evitar recrearlas en cada render.
+  const handleChange = useCallback((field, value) => {
+    setFormData(prev => ({
+      ...prev, // Crea una copia superficial del objeto actual
+      [field]: value //Actualiza SOLO la propiedad especificada, Recibe el nombre del campo y su nuevo valor  
+    }));
+  }, []);
+  //Si field = "nombreUsuario", equivale a nombreEmpresa: value
+  const resetForm = useCallback(() => {
+    setFormData({
+      nombreUsuario: "",
+      numeroTelefono: "",
+      sectorIndustrial: "",
+      cargoUsuario: "",
+      correoUsuario: "",
+      lugarUsuario: "",
+      nombreEmpresa: "",
+      codigoDescuento: "",
+      expiracionDescuento: ""
+    })
+  }, []);
 
-            if (!res.ok) {
-                const errorText = await res.text();
-                setMensaje(`Error en el servidor: ${errorText}`);
-                return;
-            }
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
 
+    if (loading) return;
 
+    setLoading(true);
+    setMensaje("");
+    // Prepara los datos (elimina espacios en blanco)
 
-            const data = await res.json();
-
-            const now = Date.now().toString();
-            // Guardar código y expiración
-            setCodigoDescuento(data.codigoDescuento ?? "");
-            setExpiracionCodigo(data.expiracionCodigo ?? "");
-            setMostrarCard(true);
-
-            //Guarda codigo de descuento
-            // Correcto: Pasar dos argumentos (clave, valor)
-            localStorage.setItem('codigoDescuento', data.codigoDescuento ?? "");
-            localStorage.setItem(
-                'expiracionCodigo',
-                new Date(data.expiracionCodigo).toISOString()
-            );
-
-            setMensaje("Registro exitoso")
-
-
-        } catch (error) {
-            console.error('Error registrando usuario:', error);
-
-            // Manejo específico para errores de red
-            if (error.name === 'TypeError') {
-                setMensaje('Error de conexión con el servidor');
-            }
-            // Manejo para errores de validación del backend
-            else if (error.response?.data) {
-                setMensaje(error.response.data.mensaje || 'Error en el registro');
-            }
-            // Error genérico
-            else {
-                setMensaje('Error inesperado: ' + error.message);
-            }
-        }
-
+    const payload = {
+      ...formData,
+      nombreUsuario: formData.nombreUsuario.trim(),
+      numeroTelefono: formData.numeroTelefono.trim(),
+      sectorIndustrial: formData.sectorIndustrial.trim(),
+      cargoUsuario: formData.cargoUsuario.trim(),
+      correoUsuario: formData.correoUsuario.trim(),
+      lugarUsuario: formData.lugarUsuario.trim(),
+      nombreEmpresa: formData.nombreEmpresa.trim()
     }
-    return {
-        nombreUsuario,
-        setNombreUsuario,
-        numeroTelefono,
-        setNumeroTelefono,
-        sectorIndustrial,
-        setSectorIndustrial,
-        cargoUsuario,
-        setCargoUsuario,
-        correoUsuario,
-        setCorreoUsuario,
-        lugarUsuario,
-        setLugarUsuario,
-        nombreEmpresa,
-        setNombreEmpresa,
-        mensaje,
-        mostrarCard,
-        setMostrarCard,
-        handleSubmit,
-        codigoDescuento,
-        expiracionCodigo
+
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!baseUrl) throw new Error("NEXT_PUBLIC_API_URL no está configurada");
+
+
+      // AbortController para manejar timeout
+      //Qué hace: Cancela la petición si demora más de 20 segundos.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000)
+      // Envía al backend
+
+      const res = await fetch(`${baseUrl}/api/usuario/public/registro`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        credentials: 'include',
+        signal: controller.signal
+      })
+      clearTimeout(timeoutId)
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `Error ${res.status}`);
+
+      }
+
+
+      const data = await res.json();
+
+      const now = Date.now().toString();
+      // Guardar código y expiración
+      // Procesa la respuesta
+
+      setCodigoDescuento(data.codigoDescuento ?? "");
+      setExpiracionCodigo(data.expiracionCodigo ?? "");
+      setMostrarCard(true);// ¡Muestra el modal con el código!
+
+      //Guarda codigo de descuento
+      // Correcto: Pasar dos argumentos (clave, valor)
+      localStorage.setItem('codigoDescuento', data.codigoDescuento ?? "");
+      localStorage.setItem(
+        'expiracionCodigo',
+        new Date(data.expiracionCodigo).toISOString()
+
+      );
+      setMostrarCard(true);
+      setMensaje('Registro exitoso, patron')
+    } catch (error) {
+      console.error("Error registrando usuario: ", error);
+      setMensaje(error.name === "AbortError")
+        ? "Tiempo de espera agotado, intente nuevamente"
+        : error.mensaje || "Error inesperado en el registro"
+    } finally {
+      setLoading(false);
     }
+  }, [formData, loading])
+
+  return {
+    formData,
+    handleChange,
+    mensaje,
+    mostrarCard,
+    setMostrarCard,
+    loading,
+    handleSubmit,
+    resetForm,
+    codigoDescuento,
+    expiracionCodigo
+
+  };
 }

@@ -1,6 +1,5 @@
 'use client'
-import Head from "next/head";
-import RegisterForm from "../components/registro/registro";
+import RegisterForm from "../component/page";
 import Image from "next/image";
 import React from "react";
 
@@ -79,7 +78,7 @@ export default function Home() {
                 text-black
                 row-start-2 col-span-full
                 md:col-start-1 md:row-start-2
-                text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-3xl
+                text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl
                 font-bold
                 text-center md:text-left
                 mb-6 sm:mb-8 md:mb-0
@@ -140,7 +139,7 @@ export default function Home() {
                 <div className="
                         w-2/3 sm:w-1/2 md:w-1/2 
                         /* Tamaños ajustados para LG y XL */
-                        lg:w-[700px] 
+                        lg:w-[300px] 
                         xl:w-[750px]
                         /* Mantenemos la relación de aspecto */
                         aspect-[3/4]
