@@ -4,9 +4,9 @@ import React, { useMemo, useState } from "react";
 
 
 export default function RegisterForm() {
-  const [texto, setTexto] = useState('$850.000')
+  const [texto, setTexto] = useState('$510.000')
   const cambiarTexto = () => {
-    setTexto('425.000$')
+    setTexto('0$')
 
   }
   const {
@@ -380,7 +380,7 @@ export default function RegisterForm() {
             <div className="flex justify-between items-center w-full mt-6">
               <button
                 className="px-5 py-2 bg-[#FF2301] text-white font-semibold rounded-lg hover:bg-[#ff8243] transition duration-200 w-[135px] h-[50px]"
-                onClick={() => setTexto('425.000$')}  // Fix this
+                onClick={() => setTexto('0$')}  // Fix this
               >
 
                 Canjear
