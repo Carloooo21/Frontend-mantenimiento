@@ -82,7 +82,7 @@ export default function RegisterForm() {
     handleSubmit
   } = useRegister("");
 
-  
+
   useEffect(() => {
     const onKeyDown = (e) => {
       //onKeyDown es una función local que recibirá el evento del teclado. e es el objeto del evento
@@ -94,7 +94,7 @@ export default function RegisterForm() {
 
     }
       ;
-    document.addEventListener('keydown', onkeydown);
+    document.addEventListener('keydown', onKeyDown);
     //Añade el listener global al document para escuchar cualquier tecla que se presione mientras la página esté activa.
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [mostrarCard]
