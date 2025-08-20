@@ -204,8 +204,8 @@ export default function RegisterForm() {
     }
 
     try {
-      await handleSubmit(e);
-      showAlert(); // Muestra el mensaje por defecto
+      await handleSubmit(e); // ahora handleSubmit puede lanzar
+      showAlert('Registro exitoso. Revisa tu voucher.', 'success');
     } catch (error) {
       // Si fue un Abort (timeout) mostramos el mensaje específico que pediste:
       if (error && error.name === 'AbortError') {
