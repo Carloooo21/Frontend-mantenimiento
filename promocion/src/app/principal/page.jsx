@@ -8,15 +8,11 @@ export default function Home() {
         <main className="min-h-screen flex flex-col relative overflow-hidden">
 
             {/* FONDO */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/Fondo (1).jpg"
-                    alt="Imagen principal"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-            </div>
+            <div
+                className="absolute inset-0 z-0"
+                style={{ backgroundColor: '#4a4a49' }}
+                aria-hidden="true"
+            />
 
             {/* GRID PRINCIPAL */}
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] grid-rows-[auto_auto_1fr_auto] flex-grow px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12">
@@ -74,7 +70,7 @@ export default function Home() {
                 <h1
                     style={{
                         fontSize: "clamp(30px, 5vw, 45px)",
-                        fontFamily: "Arial, Helvetica, sans-serif", 
+                        fontFamily: "Arial, Helvetica, sans-serif",
                     }}
                     className="
                             text-black
@@ -103,8 +99,8 @@ export default function Home() {
                     ¡Reclama aquí tu beneficio exclusivo!
                 </h1>
 
-            {/* PERSONAJE */}
-            <div className="
+                {/* PERSONAJE */}
+                <div className="
                     row-start-2 md:row-start-3 
                     col-span-full mt-[10vh]
                     flex justify-center md:justify-center 
@@ -137,8 +133,8 @@ export default function Home() {
                     xl:pt-0
                     xl:mr-[80vh]
                     ">
-                {/* Contenedor de la imagen con nuevos tamaños */}
-                <div className="
+                    {/* Contenedor de la imagen con nuevos tamaños */}
+                    <div className="
                         w-2/3 sm:w-1/2 md:w-1/2 
                         /* Tamaños ajustados para LG y XL */
                         lg:w-[300px] 
@@ -149,17 +145,17 @@ export default function Home() {
                         /* Alineación al fondo */
                         self-end
   ">
-                    <Image
-                        src="/Personaje-1 (1) (1).png"
-                        alt="Personaje"
-                        fill
-                        className="object-contain"
-                    />
-                    {/* Texto sobre imagen */}
-                    <h1 style={{
-                        fontSize: '40px',
-                    }}
-                        className="
+                        <Image
+                            src="/Personaje-1 (1) (1).png"
+                            alt="Personaje"
+                            fill
+                            className="object-contain"
+                        />
+                        {/* Texto sobre imagen */}
+                        <h1 style={{
+                            fontSize: '40px',
+                        }}
+                            className="
                         hidden /* Oculto por defecto en todos los tamaños */
                         md:block /* Visible a partir de md (768px) */
                         md:flex  /* Necesario para mantener el centrado flex */
@@ -181,13 +177,13 @@ export default function Home() {
 
           
                 ">
-                        Tu voucher te esta esperando
-                    </h1>
+                            Tu voucher te esta esperando
+                        </h1>
+                    </div>
                 </div>
-            </div>
 
-            {/* FORMULARIO  */}
-            <div className="
+                {/* FORMULARIO  */}
+                <div className="
                 row-start-3 md:row-start-2 
                 col-span-full md:col-span-2
                 flex justify-center items-center 
@@ -210,12 +206,12 @@ export default function Home() {
                 xl:col-start-2
                 xl:pt-20
 ">
-                <div className="w-full max-w-xs sm:max-w-sm md:max-w-md md:justify-center md:content-center xl:mr-10">
-                    <RegisterForm />
+                    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md md:justify-center md:content-center xl:mr-10">
+                        <RegisterForm />
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         </main >
     )
 }
