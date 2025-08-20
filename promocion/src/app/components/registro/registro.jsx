@@ -266,6 +266,7 @@ export default function RegisterForm() {
       >
         <form onSubmit={handleSubmitWithValidation} className="p-8 rounded-xl border border-[#00000] bg-gradient-to-br from-[#0a7bd4] to-[#092a49] rounded-xl shadow-xl ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Campo: Nombre de la empresa */}
             <div style={{ marginBottom: '10px' }}
               className="md:col-span-2">
               <label style={labelStyle}>Nombre del usuario
@@ -291,7 +292,7 @@ export default function RegisterForm() {
             </div>
             <div style={{ marginBottom: '10px' }}
               className="md:col-span-2">
-              <label style={labelStyle}>Numero de Telefono
+              <label style={labelStyle}>Numero de Télefono
                 <span className="text-red-500 ml-1">*</span>
                 <span className="text-xs text-white-400 block mt-1">Ej: 0101010101</span>
               </label>
@@ -314,7 +315,7 @@ export default function RegisterForm() {
               className="md:col-span-2">
               <label style={labelStyle}>Sector industria
                 <span className="text-red-500 ml-1">*</span>
-                <span className="text-xs text-white-400 block mt-1">Ej: Sector agricola, Sector tecnologico, Sector banca etc...</span>
+                <span className="text-xs text-white-400 block mt-1">Ej: Sector agricola, tecnológico, banca etc...</span>
               </label>
               <input
                 value={formData.sectorIndustrial}
@@ -325,7 +326,7 @@ export default function RegisterForm() {
                   ...inputStyle,
                   borderColor: fieldErrors.sectorIndustrial ? '#ff6b6b' : 'rgba(255,255,255,0.15)'
                 }}
-                placeholder="Ej: Sector agricola, Sector tecnologico, Sector banca etc..."
+                placeholder="Ej: Sector agricola, tecnológico, banca etc.."
                 aria-label="Sector industrial"
 
               />
@@ -379,7 +380,7 @@ export default function RegisterForm() {
               className="md:col-span-2">
               <label style={labelStyle}>Lugar de vivienda
                 <span className="text-red-500 ml-1">*</span>
-                <span className="text-xs text-white-400 block mt-1">Ej: Bogota, cundinamarca</span>
+                <span className="text-xs text-white-400 block mt-1">Ej: Bogota, Cundinamarca</span>
               </label>
               <input
                 value={formData.lugarUsuario}
@@ -400,7 +401,7 @@ export default function RegisterForm() {
               className="md:col-span-2">
               <label style={labelStyle}>Nombre empresa
                 <span className="text-red-500 ml-1">*</span>
-                <span className="text-xs text-white-400 block mt-1">Ej: Dataservicios y comunicaciones S.A.S.</span>
+                <span className="text-xs text-white-400 block mt-1">Ej: Dataservicios y Comunicaciones S.A.S.</span>
               </label>
               <input
                 value={formData.nombreEmpresa}
@@ -411,7 +412,7 @@ export default function RegisterForm() {
                   ...inputStyle,
                   borderColor: fieldErrors.nombreEmpresa ? '#ff6b6b' : 'rgba(255,255,255,0.15)'
                 }}
-                placeholder="Ej:  Dataservicios y comunicaciones S.A.S."
+                placeholder="Ej  Dataservicios y Comunicaciones S.A.S."
                 aria-label="lugar de empresa" />
               {fieldErrors.nombreEmpresa && (
                 <p style={errorStyle}>{fieldErrors.nombreEmpresa}</p>
