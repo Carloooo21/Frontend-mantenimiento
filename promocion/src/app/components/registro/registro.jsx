@@ -42,24 +42,7 @@ const Toast = ({
 
 
 export default function RegisterForm() {
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      //onKeyDown es una función local que recibirá el evento del teclado. e es el objeto del evento
-      if (e.key === 'Escape' && mostrarCard) {
-        //e.key === 'Escape' comprueba si la tecla pulsada es la tecla Escape. (Valor estándar de KeyboardEvent.key.)
-        //&& mostrarCard evita ejecutar handleCloseCard() cuando la tarjeta ya está cerrada. Es una micro-optimización para no llamar innecesariamente la función.
-        handleCloseCard();
-      }
 
-    }
-      ;
-    document.addEventListener('keydown', onkeydown);
-    //Añade el listener global al document para escuchar cualquier tecla que se presione mientras la página esté activa.
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [mostrarCard]
-    //useEffect es un hook de React que ejecuta la función que le pases después de que el componente se renderiza (o cuando cambian las dependencias).
-    // La dependencia es el array final [mostrarCard]. Esto significa: ejecuta el efecto la primera vez (mount) y cada vez que mostrarCard cambie. También ejecutará la función de limpieza antes de ejecutar el efecto de nuevo o cuando el componente se desmonte.
-  );
 
   const [redeemed, setRedeemed] = useState(false);
   const [animatePrice, setAnimatePrice] = useState(false);
@@ -99,6 +82,25 @@ export default function RegisterForm() {
     handleSubmit
   } = useRegister("");
 
+  
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      //onKeyDown es una función local que recibirá el evento del teclado. e es el objeto del evento
+      if (e.key === 'Escape' && mostrarCard) {
+        //e.key === 'Escape' comprueba si la tecla pulsada es la tecla Escape. (Valor estándar de KeyboardEvent.key.)
+        //&& mostrarCard evita ejecutar handleCloseCard() cuando la tarjeta ya está cerrada. Es una micro-optimización para no llamar innecesariamente la función.
+        handleCloseCard();
+      }
+
+    }
+      ;
+    document.addEventListener('keydown', onkeydown);
+    //Añade el listener global al document para escuchar cualquier tecla que se presione mientras la página esté activa.
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [mostrarCard]
+    //useEffect es un hook de React que ejecuta la función que le pases después de que el componente se renderiza (o cuando cambian las dependencias).
+    // La dependencia es el array final [mostrarCard]. Esto significa: ejecuta el efecto la primera vez (mount) y cada vez que mostrarCard cambie. También ejecutará la función de limpieza antes de ejecutar el efecto de nuevo o cuando el componente se desmonte.
+  );
 
   // Estado para errores específicos por campo
   const [fieldErrors, setFieldErrors] = useState({
