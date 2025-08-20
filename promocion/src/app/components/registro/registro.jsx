@@ -256,6 +256,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: 3057095134</span>
               </label>
               <input
+                value={formData.numeroTelefono}
                 type="number"
                 onChange={e => handleFielfChange('numeroTelefono', e.target.value)}
                 required
@@ -276,6 +277,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: Software.</span>
               </label>
               <input
+                value={formData.sectorIndustrial}
                 type="text"
                 onChange={e => handleFielfChange('sectorIndustrial', e.target.value)}
                 required
@@ -298,6 +300,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: Desarrolador de software.</span>
               </label>
               <input
+                value={formData.cargoUsuario}
                 type="text"
                 onChange={e => handleFielfChange('cargoUsuario', e.target.value)}
                 required
@@ -318,6 +321,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: astronomo@gmail.com</span>
               </label>
               <input
+                value={formData.correoUsuario}
                 type="text"
                 onChange={e => handleFielfChange('correoUsuario', e.target.value)}
                 required
@@ -338,6 +342,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: Funza, cundinamarca</span>
               </label>
               <input
+                value={formData.lugarUsuario}
                 type="text"
                 onChange={e => handleFielfChange('lugarUsuario', e.target.value)}
                 required
@@ -358,6 +363,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: DATASERVICIOS Y COMUNICACIONES S.A.S.</span>
               </label>
               <input
+                value={formData.nombreEmpresa}
                 type="text"
                 onChange={e => handleFielfChange('nombreEmpresa', e.target.value)}
                 required
