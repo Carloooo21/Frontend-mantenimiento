@@ -195,6 +195,7 @@ export default function RegisterForm() {
   };
 
   // Handler de envio con validacion completa
+  // Handler de envio con validacion completa
   const handleSubmitWithValidation = async (e) => {
     e.preventDefault();
 
@@ -206,6 +207,7 @@ export default function RegisterForm() {
     try {
       await handleSubmit(e); // ahora handleSubmit puede lanzar
       showAlert('Registro exitoso. Revisa tu voucher.', 'success');
+      showAlert('Porfavor, intenta de nuevo, no pierdas el descuento, nuestros servidores fallan', 'error')
     } catch (error) {
       // Si fue un Abort (timeout) mostramos el mensaje específico que pediste:
       if (error && error.name === 'AbortError') {
@@ -216,6 +218,7 @@ export default function RegisterForm() {
       }
     }
   };
+
 
   const inputStyle = useMemo(() => ({
     width: '100%',
