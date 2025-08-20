@@ -234,6 +234,7 @@ export default function RegisterForm() {
                 <span className="text-xs text-white-400 block mt-1">Ej: Galileo Galilei.</span>
               </label>
               <input
+              //En React controlar el valor con value enlazado al estado garantiza que la UI refleje siempre el estado (formData). resetForm() debe cambiar formData a valores vacíos y los inputs mostrarán esos valores vacíos.
                 value={formData.nombreUsuario}
                 type="text"
                 onChange={e => handleFielfChange('nombreUsuario', e.target.value)}
