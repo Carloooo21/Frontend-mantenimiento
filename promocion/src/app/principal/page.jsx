@@ -71,35 +71,37 @@ export default function Home() {
                 </div>
 
                 {/* TÍTULO */}
-                <h1 style={{
-                fontSize: 'clamp(30px, 5vw, 45px)',
-                fontFamily: 'cursive'
-                }} className="
-                text-black
-                row-start-2 col-span-full
-                md:col-start-1 md:row-start-2
-                text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl
-                font-bold
-                text-center md:text-left
-                mb-6 sm:mb-8 md:mb-0
-                md:self-center
-                /* Cambio para md */
-                sm:row-start-2
-                sm:col-start-1
-                sm:mb[200px]
-
-                /* Cambio para LG */
-                lg:row-start-2
-                lg:col-start-1
-                lg:self-center
-                /* Cambio para XL */
-                xl:row-start-1
-                xl:col-start-1
-                xl:self-center
-                xl:ml-[1vh]
-        ">
-                ¡Reclama aquí tu beneficio exclusivo!
-            </h1>
+                <h1
+                    style={{
+                        fontSize: "clamp(30px, 5vw, 45px)",
+                        fontFamily: "Arial, Helvetica, sans-serif", 
+                    }}
+                    className="
+                            text-black
+                            font-bold
+                            tracking-[0.02em]
+                            leading-tight
+                            antialiased
+                            row-start-2 col-span-full
+                            md:col-start-1 md:row-start-2
+                            text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl
+                            text-center md:text-left
+                            mb-6 sm:mb-8 md:mb-0
+                            md:self-center
+                            sm:row-start-2
+                            sm:col-start-1
+                            sm:mb[200px]
+                            lg:row-start-2
+                            lg:col-start-1
+                            lg:self-center
+                            xl:row-start-1
+                            xl:col-start-1
+                            xl:self-center
+                            xl:ml-[1vh]
+                        "
+                >
+                    ¡Reclama aquí tu beneficio exclusivo!
+                </h1>
 
             {/* PERSONAJE */}
             <div className="
